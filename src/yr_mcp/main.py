@@ -69,8 +69,14 @@ mcp.add_tool(
     Each alert message (identified by its CAP id) is only issued once, and is valid until the expires time or updated by another alert message.
     """,
 )
-mcp.prompt(description="Preparing for weather focused travel")(travel_planner)
+
+
+def main() -> None:
+    print("Hello from yr-mcp!")
+    mcp.run(transport="stdio")
 
 
 if __name__ == "__main__":
-    mcp.run()
+    main()
+
+mcp.prompt(description="Preparing for weather focused travel")(travel_planner)
