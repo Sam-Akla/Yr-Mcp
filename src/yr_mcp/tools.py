@@ -3,7 +3,6 @@ import logging
 from typing import Any, Literal
 
 import httpx2
-from geopy.geocoders import Nominatim
 from mcp.server.mcpserver import Context
 
 from yr_mcp.context import AppContext
@@ -33,15 +32,19 @@ async def get_location_forecast(
 
     client = ctx.request_context.lifespan_context.http_client
 
+    params = {
+        "lat": round(latitude, 4),
+        "lon": round(longitude, 4),
+    }
+
+    if altitude != None:
+        params["altitude"] = altitude
+
     logger.info("Fetching weather forecast")
     return await make_weather_request(
         client=client,
         endpoint=f"/locationforecast/2.0/{usage_method}",
-        params={
-            "lat": round(latitude, 4),
-            "lon": round(longitude, 4),
-            "altitude": altitude,
-        },
+        params=params,
     )
 
 
