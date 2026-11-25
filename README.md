@@ -66,4 +66,10 @@ From the project directory, run:
 uv run python test/simple_smoke_test.py
 ```
 
+## Roadmap
+
+- [ ] Expose place-name and address lookup as an MCP tool so users can find coordinates for weather requests.
+- [ ] Return actionable errors when MET Norway requests fail or return an unreadable response.
+- [ ] Expand automated coverage for all four weather tools using mocked API responses, alongside the existing `stdio` startup check.
+
 The script checks that the forecast tool is registered and calls it with coordinates for Oslo. It requires internet access.
